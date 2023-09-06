@@ -7,8 +7,8 @@ it('can get the matching percentage between images', function (string $image1, s
 
     expect($pixelMatch->matchingPercentage())->toBe($result);
 })->with([
-    'similar images' => ['tests/Fixtures/Images/4b.png', 'tests/Fixtures/Images/4b.png', 100],
-    'different images' => ['tests/Fixtures/Images/4a.png', 'tests/Fixtures/Images/4b.png', 96],
+    'similar images' => ['tests/fixtures/4b.png', 'tests/fixtures/4b.png', 100],
+    'different images' => ['tests/fixtures/4a.png', 'tests/fixtures/4b.png', 96],
 ]);
 
 it('can get the mismatching percentage between images', function (string $image1, string $image2, int $result) {
@@ -16,6 +16,19 @@ it('can get the mismatching percentage between images', function (string $image1
 
     expect($pixelMatch->mismatchingPercentage())->toBe($result);
 })->with([
-    'similar images' => ['tests/Fixtures/Images/4b.png', 'tests/Fixtures/Images/4b.png', 0],
-    'different images' => ['tests/Fixtures/Images/4a.png', 'tests/Fixtures/Images/4b.png', 4],
+    'similar images' => ['tests/fixtures/4b.png', 'tests/fixtures/4b.png', 0],
+    'different images' => ['tests/fixtures/4a.png', 'tests/fixtures/4b.png', 4],
+]);
+
+it('can set the threshold higher', function (float $threshold, int $result) {
+    $pixelMatch = PixelMatch::new('tests/fixtures/1a.png', 'tests/fixtures/1b.png');
+
+    $pixelMatch->threshold($threshold);
+
+    expect($pixelMatch->matchingPercentage())->toBe($result);
+    // results in https://github.com/mapbox/pixelmatch/blob/main/test/test.js
+
+})->with([
+    'lowest threshold' => [0, 143],
+    'highest threshold' => [1, 99],
 ]);

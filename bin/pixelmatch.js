@@ -25,7 +25,7 @@ function getMatchingPercentage(imagePath1, imagePath2, options = {})
 try {
     const args = JSON.parse(process.argv.slice(2));
 
-    getMatchingPercentage(args[0], args[1]);
+    getMatchingPercentage(args[0], args[1], args[2]);
 } catch (error) {
     console.error(error);
     process.exit(1);
