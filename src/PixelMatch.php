@@ -2,7 +2,7 @@
 
 namespace Spatie\PixelMatch;
 
-use Spatie\PixelMatch\Actions\ExecuteNode;
+use Spatie\PixelMatch\Actions\ExecuteNodeAction;
 use Spatie\PixelMatch\Concerns\HasOptions;
 use Spatie\PixelMatch\Enums\Output;
 
@@ -12,14 +12,12 @@ class PixelMatch
 
     protected string $workingDirectory;
 
-    protected ExecuteNode $executeNode;
-
     protected function __construct(
-        public readonly string $pathToImage1,
-        public readonly string $pathToImage2,
+        public string $pathToImage1,
+        public string $pathToImage2,
+        public $executeNodeAction = new ExecuteNodeAction(),
     ) {
         $this->workingDirectory = (string) realpath(dirname(__DIR__));
-        $this->executeNode = new ExecuteNode();
     }
 
     public static function new(string $pathToImage1, string $pathToImage2): self
@@ -29,24 +27,27 @@ class PixelMatch
 
     public function matchingPercentage(): int
     {
-        return $this->run(Output::percentage);
+        return $this->run(Output::Percentage);
     }
 
     public function mismatchingPercentage(): int
     {
-        return 100 - $this->run(Output::percentage);
+        return 100 - $this->run(Output::Percentage);
     }
 
     public function mismatchingPixels(): int
     {
-        return $this->run(Output::pixels);
+        return $this->run(Output::Pixels);
     }
 
     protected function run(Output $output): int
     {
         $arguments = Arguments::new($output, $this);
 
-        $result = $this->executeNode->execute($this->workingDirectory, $arguments->toArray());
+        $result = $this->executeNodeAction->execute(
+            $this->workingDirectory,
+            $arguments->toArray()
+        );
 
         return (int) json_decode($result, true);
     }

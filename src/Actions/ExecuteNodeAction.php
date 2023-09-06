@@ -6,7 +6,7 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\ExecutableFinder;
 use Symfony\Component\Process\Process;
 
-class ExecuteNode
+class ExecuteNodeAction
 {
     protected string $fileDir = 'bin/';
 

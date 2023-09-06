@@ -8,15 +8,19 @@ use Spatie\PixelMatch\PixelMatch;
 /** @mixin PixelMatch */
 trait HasOptions
 {
-    // disables detecting and ignoring anti-aliased pixels
-    protected bool $includeAA;
+    /*
+     * If true, we'll ignore anti-aliased pixels
+     */
+    protected bool $includeAa;
 
-    // Smaller values make the comparison more sensitive
+    /*
+     * Smaller values make the comparison more sensitive
+     */
     protected float $threshold;
 
-    public function includeAa(bool $includeAA = true): self
+    public function includeAa(bool $includeAa = true): self
     {
-        $this->includeAA = $includeAA;
+        $this->includeAa = $includeAa;
 
         return $this;
     }
@@ -37,8 +41,8 @@ trait HasOptions
     {
         $options = [];
 
-        if (isset($this->includeAA)) {
-            $options['includeAA'] = $this->includeAA;
+        if (isset($this->includeAa)) {
+            $options['includeAA'] = $this->includeAa;
         }
 
         if (isset($this->threshold)) {

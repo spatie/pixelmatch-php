@@ -31,7 +31,6 @@ class Arguments
     /** @return array<int, mixed> */
     public function toArray(): array
     {
-        // Beware, the order of the arguments is important for the Node script
         return [
             $this->output,
             $this->imagePath1,
