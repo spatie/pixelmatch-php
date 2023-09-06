@@ -12,7 +12,7 @@ class ExecuteNode
 
     protected string $filename = 'pixelmatch.js';
 
-    /** @param array<int, mixed> $arguments */
+    /** @param  array<int, mixed>  $arguments */
     public function execute(
         string $workingDir,
         array $arguments
@@ -32,7 +32,7 @@ class ExecuteNode
     }
 
     /**
-     * @param array<int, mixed> $arguments
+     * @param  array<int, mixed>  $arguments
      * @return array<int, ?string>
      */
     protected function getCommand(array $arguments): array
