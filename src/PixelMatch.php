@@ -12,8 +12,8 @@ class PixelMatch
     protected string $workingDirectory;
 
     protected function __construct(
-        protected string $pathToImage1,
-        protected string $pathToImage2,
+        public readonly string $pathToImage1,
+        public readonly string $pathToImage2,
     ) {
         $this->workingDirectory = realpath(dirname(__DIR__));
     }
@@ -23,14 +23,21 @@ class PixelMatch
         return new static($pathToImage1, $pathToImage2);
     }
 
-    public function compare(): int
+    public function matchingPercentage(): int
     {
-        $arguments = [
-            $this->pathToImage1,
-            $this->pathToImage2,
-        ];
+        return $this->run();
+    }
 
-        $result = (new ExecuteNode())->execute($this->workingDirectory, $arguments);
+    public function mismatchingPercentage(): int
+    {
+        return 100 - $this->run();
+    }
+
+    protected function run(): int
+    {
+        $arguments = Arguments::fromPixelMatch($this);
+
+        $result = (new ExecuteNode())->execute($this->workingDirectory, $arguments->toArray());
 
         return (int) json_decode($result, true);
     }

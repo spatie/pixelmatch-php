@@ -2,13 +2,16 @@
 
 namespace Spatie\PixelMatch\Concerns;
 
+use InvalidArgumentException;
 use Spatie\PixelMatch\PixelMatch;
 
 /** @mixin PixelMatch */
 trait HasOptions
 {
+    // disables detecting and ignoring anti-aliased pixels
     public readonly bool $includeAA;
 
+    // Smaller values make the comparison more sensitive
     public readonly float $threshold;
 
     public function includeAa(bool $includeAA = true): self
@@ -20,6 +23,10 @@ trait HasOptions
 
     public function threshold(float $threshold): self
     {
+        if ($threshold > 1 || $threshold < 0) {
+            throw new InvalidArgumentException('Threshold should be between 0 and 1');
+        }
+
         $this->threshold = $threshold;
 
         return $this;
