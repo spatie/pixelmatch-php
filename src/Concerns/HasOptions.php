@@ -9,10 +9,10 @@ use Spatie\PixelMatch\PixelMatch;
 trait HasOptions
 {
     // disables detecting and ignoring anti-aliased pixels
-    public readonly bool $includeAA;
+    protected bool $includeAA;
 
     // Smaller values make the comparison more sensitive
-    public readonly float $threshold;
+    protected float $threshold;
 
     public function includeAa(bool $includeAA = true): self
     {

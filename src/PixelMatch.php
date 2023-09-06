@@ -4,6 +4,7 @@ namespace Spatie\PixelMatch;
 
 use Spatie\PixelMatch\Actions\ExecuteNode;
 use Spatie\PixelMatch\Concerns\HasOptions;
+use Spatie\PixelMatch\Enums\Output;
 
 class PixelMatch
 {
@@ -25,17 +26,22 @@ class PixelMatch
 
     public function matchingPercentage(): int
     {
-        return $this->run();
+        return $this->run(Output::percentage);
     }
 
     public function mismatchingPercentage(): int
     {
-        return 100 - $this->run();
+        return 100 - $this->run(Output::percentage);
     }
 
-    protected function run(): int
+    public function mismatchingPixels(): int
     {
-        $arguments = Arguments::fromPixelMatch($this);
+        return $this->run(Output::pixels);
+    }
+
+    protected function run(Output $output): int
+    {
+        $arguments = Arguments::new($output, $this);
 
         $result = (new ExecuteNode())->execute($this->workingDirectory, $arguments->toArray());
 

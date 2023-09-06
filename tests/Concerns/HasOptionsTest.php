@@ -10,22 +10,22 @@ beforeEach(function () {
 });
 
 it('can set include aa as option', function () {
-    expect($this->pixelMatch->includeAA)->toBeFalse();
-
     $this->pixelMatch->includeAa();
+    expect($this->pixelMatch->options()['includeAA'])->toBeTrue();
 
-    expect($this->pixelMatch->includeAA)->toBeTrue();
+    $this->pixelMatch->includeAa(false);
+    expect($this->pixelMatch->options()['includeAA'])->toBeFalse();
 });
 
 it('can set the threshold', function () {
     $this->pixelMatch->threshold(0.1);
-    expect($this->pixelMatch->threshold)->toBe(0.1);
+    expect($this->pixelMatch->options()['threshold'])->toBe(0.1);
 
     $this->pixelMatch->threshold(1);
-    expect($this->pixelMatch->threshold)->toBe(1);
+    expect($this->pixelMatch->options()['threshold'])->toBe(1.0);
 
     $this->pixelMatch->threshold(0);
-    expect($this->pixelMatch->threshold)->toBe(0);
+    expect($this->pixelMatch->options()['threshold'])->toBe(0.0);
 });
 
 it('cannot set an invalid threshold', function (float $value) {
