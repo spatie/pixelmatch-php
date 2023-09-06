@@ -4,7 +4,7 @@
 [![Tests](https://img.shields.io/github/actions/workflow/status/spatie/pixelmatch-php/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/spatie/pixelmatch-php/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/pixelmatch-php.svg?style=flat-square)](https://packagist.org/packages/spatie/pixelmatch-php)
 
-Pixelmatch` is a small and fast Javascript library for pixel-level image comparison.
+Pixelmatch is a small and fast Javascript library for pixel-level image comparison.
 This package can execute the same pixel-level image comparison in PHP.
 
 ## Support us
