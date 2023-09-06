@@ -2,16 +2,11 @@
 
 use Spatie\PixelMatch\PixelMatch;
 
-it('can set an option', function () {
-    $pixelMatch = PixelMatch::new('path.png', 'path2.png');
+it('can get the matching percentage between images', function (string $image1, string $image2, int $result) {
+    $pixelMatch = PixelMatch::new($image1, $image2);
 
-    $pixelMatch->options()->includeAa();
-
-    expect($pixelMatch->options()->includeAA)->toBeTrue();
-});
-
-it('can can execute node', function () {
-    $pixelMatch = PixelMatch::new('../tests/Fixtures/Images/4b.png', '../tests/Fixtures/Images/4b.png');
-
-    expect($pixelMatch->compare())->toBe('100');
-});
+    expect($pixelMatch->compare())->toBe($result);
+})->with([
+    'similar images' => ['tests/Fixtures/Images/4b.png', 'tests/Fixtures/Images/4b.png', 100],
+    'different images' => ['tests/Fixtures/Images/4a.png', 'tests/Fixtures/Images/4b.png', 96],
+]);

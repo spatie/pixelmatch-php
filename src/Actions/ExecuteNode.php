@@ -8,10 +8,13 @@ use Symfony\Component\Process\Process;
 
 class ExecuteNode
 {
+    protected string $fileDir = 'bin/';
     protected string $filename = 'pixelmatch.js';
 
-    public function execute(string $workingDir, array $arguments): string
-    {
+    public function execute(
+        string $workingDir,
+        array $arguments
+    ): string {
         $process = new Process(
             command: $this->getCommand($arguments),
             cwd: $workingDir,
@@ -33,7 +36,7 @@ class ExecuteNode
                 '/usr/local/bin',
                 '/opt/homebrew/bin',
             ]),
-            $this->filename,
+            $this->fileDir . $this->filename,
             json_encode(array_values($arguments)),
         ];
     }

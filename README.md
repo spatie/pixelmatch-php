@@ -4,7 +4,8 @@
 [![Tests](https://img.shields.io/github/actions/workflow/status/spatie/pixelmatch-php/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/spatie/pixelmatch-php/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/pixelmatch-php.svg?style=flat-square)](https://packagist.org/packages/spatie/pixelmatch-php)
 
-This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
+Pixelmark is a small and fast Javascript library for pixel-level image comparison.
+This package can execute the same pixel-level image comparison in PHP.
 
 ## Support us
 
@@ -22,11 +23,26 @@ You can install the package via composer:
 composer require spatie/pixelmatch-php
 ```
 
+In your project, or on your server, you must have the JavaScript package [`mjml`](https://github.com/mjmlio/mjml) installed.
+
+```bash
+npm install mjml
+```
+
+... or Yarn.
+
+```bash
+yarn add mjml
+```
+
+Make sure you have installed Node 16 or higher.
+
 ## Usage
 
 ```php
-$skeleton = new Spatie\PixelMatch();
-echo $skeleton->echoPhrase('Hello, Spatie!');
+$pixelMatch = \Spatie\PixelMatch::new("path/to/file1.png", "path/to/file2.png");
+
+$pixelMatch->compare();
 ```
 
 ## Testing
