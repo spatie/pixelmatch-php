@@ -7,6 +7,7 @@ use Spatie\PixelMatch\Enums\Output;
 class Arguments
 {
     // @todo extend with output, width & height, if needed
+    /** @param array<string, mixed> $options */
     protected function __construct(
         public string $imagePath1,
         public string $imagePath2,
@@ -27,6 +28,7 @@ class Arguments
         );
     }
 
+    /** @return array<int, mixed> */
     public function toArray(): array
     {
         // Beware, the order of the arguments is important for the Node script

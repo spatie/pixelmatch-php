@@ -32,6 +32,7 @@ trait HasOptions
         return $this;
     }
 
+    /** @return array<string, mixed> */
     public function options(): array
     {
         $options = [];

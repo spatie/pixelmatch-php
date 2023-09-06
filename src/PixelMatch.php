@@ -16,7 +16,7 @@ class PixelMatch
         public readonly string $pathToImage1,
         public readonly string $pathToImage2,
     ) {
-        $this->workingDirectory = realpath(dirname(__DIR__));
+        $this->workingDirectory = (string) realpath(dirname(__DIR__));
     }
 
     public static function new(string $pathToImage1, string $pathToImage2): self

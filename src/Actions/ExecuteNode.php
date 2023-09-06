@@ -12,6 +12,7 @@ class ExecuteNode
 
     protected string $filename = 'pixelmatch.js';
 
+    /** @param array<int, mixed> $arguments */
     public function execute(
         string $workingDir,
         array $arguments
@@ -30,6 +31,10 @@ class ExecuteNode
         return $process->getOutput();
     }
 
+    /**
+     * @param array<int, mixed> $arguments
+     * @return array<int, ?string>
+     */
     protected function getCommand(array $arguments): array
     {
         return [
@@ -38,7 +43,7 @@ class ExecuteNode
                 '/opt/homebrew/bin',
             ]),
             $this->fileDir.$this->filename,
-            json_encode(array_values($arguments)),
+            json_encode(array_values($arguments), JSON_THROW_ON_ERROR),
         ];
     }
 }
