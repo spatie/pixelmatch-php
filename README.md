@@ -26,13 +26,13 @@ composer require spatie/pixelmatch-php
 In your project, or on your server, you must have the JavaScript package [`pixelmatch`](https://github.com/mapbox/pixelmatch) installed.
 
 ```bash
-npm install mjml
+npm install pixelmatch
 ```
 
 ... or Yarn.
 
 ```bash
-yarn add mjml
+yarn add pixelmatch
 ```
 
 Make sure you have installed Node 16 or higher.
@@ -44,37 +44,43 @@ To quickly see the percentage of pixels that are different between two images, y
 ### Mismatching results in percentage or amount of pixels
 
 ```php
-$pixelMatch = \Spatie\PixelMatch::new("path/to/file1.png", "path/to/file2.png");
+use Spatie\PixelMatch\PixelMatch;
 
-$pixelMatch->mismatchingPercentage(); // 3
-$pixelMatch->matchingPercentage(); // 97
+$pixelMatch = PixelMatch::new("path/to/file1.png", "path/to/file2.png");
+
+$pixelMatch->mismatchingPercentage(); // returns 3
+$pixelMatch->matchingPercentage(); // returns 97
 ```
 
 To get the amount of mismatched pixels, you can use the `mismatchingPixels` method.
 
 ```php
-$pixelMatch = \Spatie\PixelMatch::new("path/to/file1.png", "path/to/file2.png");
+use Spatie\PixelMatch\PixelMatch;
 
-$pixelMatch->mismatchingPixels(); // 12304
+
+$pixelMatch = PixelMatch::new("path/to/file1.png", "path/to/file2.png");
+
+$pixelMatch->mismatchingPixels(); // returns an int
 ```
 
 ### Options
 
-#### Anti aliasing
-To disable detecting and ignoring anti-aliased pixels, you can use the `includeAa` method.
+#### Ignoring anti-aliasing
+
+To ignore anti-aliased pixels, you can use the `includeAa` method.
 
 ```php
 $pixelMatch->includeAa();
 ```
 
-#### Threshold
+#### Setting a threshold
+
 To set the threshold for the amount of mismatching pixels, you can use the `threshold` method.
 The threshold should be between 0 and 1.
 
 ```php
 $pixelMatch->threshold(0.05);
 ```
-
 
 ## Testing
 
