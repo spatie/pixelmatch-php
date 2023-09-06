@@ -23,7 +23,7 @@ You can install the package via composer:
 composer require spatie/pixelmatch-php
 ```
 
-In your project, or on your server, you must have the JavaScript package [`mjml`](https://github.com/mjmlio/mjml) installed.
+In your project, or on your server, you must have the JavaScript package [`pixelmatch`](https://github.com/mapbox/pixelmatch) installed.
 
 ```bash
 npm install mjml
