@@ -2,6 +2,6 @@
 
 namespace Spatie\PixelMatch;
 
-class PixelMatchClass
+class PixelMatch
 {
 }
