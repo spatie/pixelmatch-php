@@ -39,11 +39,42 @@ Make sure you have installed Node 16 or higher.
 
 ## Usage
 
+To quickly see the percentage of pixels that are different between two images, you can use the `mismatchingPercentage` method.
+
+### Mismatching results in percentage or amount of pixels
+
 ```php
 $pixelMatch = \Spatie\PixelMatch::new("path/to/file1.png", "path/to/file2.png");
 
-$pixelMatch->compare();
+$pixelMatch->mismatchingPercentage(); // 3
+$pixelMatch->matchingPercentage(); // 97
 ```
+
+To get the amount of mismatched pixels, you can use the `mismatchingPixels` method.
+
+```php
+$pixelMatch = \Spatie\PixelMatch::new("path/to/file1.png", "path/to/file2.png");
+
+$pixelMatch->mismatchingPixels(); // 12304
+```
+
+### Options
+
+#### Anti aliasing
+To disable detecting and ignoring anti-aliased pixels, you can use the `includeAa` method.
+
+```php
+$pixelMatch->includeAa();
+```
+
+#### Threshold
+To set the threshold for the amount of mismatching pixels, you can use the `threshold` method.
+The threshold should be between 0 and 1.
+
+```php
+$pixelMatch->threshold(0.05);
+```
+
 
 ## Testing
 

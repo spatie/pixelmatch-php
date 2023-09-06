@@ -12,11 +12,14 @@ class PixelMatch
 
     protected string $workingDirectory;
 
+    protected ExecuteNode $executeNode;
+
     protected function __construct(
         public readonly string $pathToImage1,
         public readonly string $pathToImage2,
     ) {
         $this->workingDirectory = (string) realpath(dirname(__DIR__));
+        $this->executeNode = new ExecuteNode();
     }
 
     public static function new(string $pathToImage1, string $pathToImage2): self
@@ -43,7 +46,7 @@ class PixelMatch
     {
         $arguments = Arguments::new($output, $this);
 
-        $result = (new ExecuteNode())->execute($this->workingDirectory, $arguments->toArray());
+        $result = $this->executeNode->execute($this->workingDirectory, $arguments->toArray());
 
         return (int) json_decode($result, true);
     }
