@@ -13,5 +13,5 @@ it('can set an option', function () {
 it('can can execute node', function () {
     $pixelMatch = PixelMatch::new('../tests/Fixtures/Images/4b.png', '../tests/Fixtures/Images/4b.png');
 
-    expect($pixelMatch->compare())->toBe("100");
+    expect($pixelMatch->compare())->toBe('100');
 });

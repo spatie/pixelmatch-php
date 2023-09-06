@@ -3,9 +3,6 @@
 namespace Spatie\PixelMatch;
 
 use Spatie\PixelMatch\Actions\ExecuteNode;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\ExecutableFinder;
-use Symfony\Component\Process\Process;
 
 class PixelMatch
 {
