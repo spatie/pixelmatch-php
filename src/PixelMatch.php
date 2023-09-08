@@ -45,8 +45,8 @@ class PixelMatch
         $arguments = Arguments::new($output, $this);
 
         $result = $this->executeNodeAction->execute(
-            $this->workingDirectory,
-            $arguments->toArray()
+            workingDir: $this->workingDirectory,
+            arguments: $arguments->toArray(),
         );
 
         return (int) json_decode($result, true);

@@ -2,6 +2,7 @@
 
 namespace Spatie\PixelMatch;
 
+use InvalidArgumentException;
 use Spatie\PixelMatch\Enums\Output;
 
 class Arguments
@@ -14,8 +15,7 @@ class Arguments
         public array $options,
         public Output $output,
     ) {
-        // @todo validate input
-        // Do images exist and are .png
+        $this->validate();
     }
 
     public static function new(Output $output, PixelMatch $pixelMatch): self
@@ -37,5 +37,18 @@ class Arguments
             $this->imagePath2,
             $this->options,
         ];
+    }
+
+    protected function validate(): void
+    {
+        $paths = [$this->imagePath1, $this->imagePath2];
+
+        foreach ($paths as $filePath) {
+            $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+
+            if (strtolower($extension) !== 'png') {
+                throw new InvalidArgumentException("File `{$filePath}` is not a .png file");
+            }
+        }
     }
 }

@@ -42,3 +42,14 @@ it('can set the threshold higher', function (float $threshold, int $result) {
     'lowest threshold' => [0, 10279],
     'highest threshold' => [1, 0],
 ]);
+
+// Exceptions
+it('throws an exception when the image path is not a .png file', function (string $image1, string $image2) {
+    $pixelmatch = PixelMatch::new($image1, $image2);
+
+    $pixelmatch->matchingPercentage();
+})->throws(InvalidArgumentException::class)->with([
+    'First is .jpg' => ['tests/fixtures/1b.jpg', 'tests/fixtures/1a.png'],
+    'Second is .jpg' => ['tests/fixtures/1a.png', 'tests/fixtures/1b.jpg'],
+    'Both are .docx' => ['tests/fixtures/1b.docx', 'tests/fixtures/1a.docx'],
+]);
