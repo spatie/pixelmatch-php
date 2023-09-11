@@ -24,7 +24,7 @@ class Pixelmatch
 
     protected string $fileDir = 'bin/';
 
-    protected string $filename = 'Pixelmatch.js';
+    protected string $filename = 'pixelmatch.js';
 
     protected function __construct(
         public string $pathToImage1,
