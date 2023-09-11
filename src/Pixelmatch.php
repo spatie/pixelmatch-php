@@ -157,7 +157,9 @@ class Pixelmatch
     }
 
     /**
-     * @return array<int, ?string>
+     * @param array<string, mixed> $arguments
+     *
+     * @return array<int, string|false|null>
      */
     protected function getCommand(array $arguments): array
     {
