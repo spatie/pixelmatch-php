@@ -84,4 +84,3 @@ it('cannot set an invalid threshold', function (float $value) {
     -0.1,
     1.1,
 ])->throws(InvalidThreshold::class);
-
