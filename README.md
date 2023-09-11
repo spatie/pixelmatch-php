@@ -39,7 +39,7 @@ Make sure you have installed Node 16 or higher.
 
 ## Usage
 
-To quickly see the percentage of pixels that are different between two images, you can use the `mismatchingPercentage` method.
+To quickly see the percentage of pixels that are different between two images, you can use the `mismatchedPixelPercentage` method.
 
 ### Mismatching results in percentage or amount of pixels
 
@@ -48,11 +48,11 @@ use Spatie\Pixelmatch\Pixelmatch;
 
 $pixelmatch = Pixelmatch::new("path/to/file1.png", "path/to/file2.png");
 
-$pixelmatch->mismatchingPercentage(); // returns 3
-$pixelmatch->matchingPercentage(); // returns 97
+$pixelmatch->mismatchedPixelPercentage(); // returns 3
+$pixelmatch->matchedPixelPercentage(); // returns 97
 ```
 
-To get the amount of mismatched pixels, you can use the `mismatchingPixels` method.
+To get the amount of mismatched pixels, you can use the `mismatchedPixels` method.
 
 ```php
 use Spatie\Pixelmatch\Pixelmatch;
@@ -60,7 +60,7 @@ use Spatie\Pixelmatch\Pixelmatch;
 
 $pixelmatch = Pixelmatch::new("path/to/file1.png", "path/to/file2.png");
 
-$pixelmatch->mismatchingPixels(); // returns an int
+$pixelmatch->mismatchedPixels(); // returns an int
 ```
 
 ### Options

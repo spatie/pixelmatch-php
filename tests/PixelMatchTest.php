@@ -9,7 +9,7 @@ use Spatie\Pixelmatch\PixelmatchResult;
 it('can get the matching percentage between images', function (string $image1, string $image2, int $result) {
     $pixelmatch = Pixelmatch::new($image1, $image2);
 
-    expect((int) $pixelmatch->matchingPercentage())->toBe($result);
+    expect((int) $pixelmatch->matchedPixelPercentage())->toBe($result);
 })->with([
     'similar images' => [testImage('mapB.png'), testImage('mapB.png'), 100],
     'different images' => [testImage('mapA.png'), testImage('mapB.png'), 96],
@@ -31,7 +31,7 @@ it('can get a direct result', function () {
 it('can get the mismatching pixels between images', function (string $image1, string $image2, int $result) {
     $pixelmatch = Pixelmatch::new($image1, $image2);
 
-    expect($pixelmatch->mismatchingPixels())->toBe($result);
+    expect($pixelmatch->mismatchedPixels())->toBe($result);
 })->with([
     'similar images' => [testImage('textA.png'), testImage('textA.png'), 0],
     'different images' => [testImage('textA.png'), testImage('textB.png'), 106],
@@ -40,7 +40,7 @@ it('can get the mismatching pixels between images', function (string $image1, st
 it('can get the mismatching percentage between images', function (string $image1, string $image2, int $result) {
     $pixelmatch = Pixelmatch::new($image1, $image2);
 
-    expect((int) $pixelmatch->mismatchingPercentage())->toBe($result);
+    expect((int) $pixelmatch->mismatchedPixelPercentage())->toBe($result);
 })->with([
     'similar images' => [testImage('mapB.png'), testImage('mapB.png'), 0],
     'different images' => [testImage('mapA.png'), testImage('mapB.png'), 3],
@@ -52,7 +52,7 @@ it('can set the threshold higher', function (float $threshold, int $result) {
 
     $pixelmatch->threshold($threshold);
 
-    expect($pixelmatch->mismatchingPixels())->toBe($result);
+    expect($pixelmatch->mismatchedPixels())->toBe($result);
 })->with([
     'lowest threshold' => [0, 10279],
     'highest threshold' => [1, 0],
@@ -61,7 +61,7 @@ it('can set the threshold higher', function (float $threshold, int $result) {
 it('throws an exception when the image path is not a .png file', function (string $image1, string $image2) {
     $pixelmatch = Pixelmatch::new($image1, $image2);
 
-    $pixelmatch->matchingPercentage();
+    $pixelmatch->matchedPixelPercentage();
 })->throws(InvalidImage::class)->with([
     'First is .jpg' => [testImage('textB.jpg'), testImage('textA.png')],
     'Second is .jpg' => [testImage('textA.png'), testImage('textB.jpg')],

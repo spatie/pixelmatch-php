@@ -92,17 +92,22 @@ class Pixelmatch
         return $options;
     }
 
-    public function matchingPercentage(): float
+    public function matchedPixelPercentage(): float
     {
         return $this->getResult()->matchedPixelPercentage();
     }
 
-    public function mismatchingPercentage(): float
+    public function mismatchedPixelPercentage(): float
     {
         return $this->getResult()->mismatchedPixelPercentage();
     }
 
-    public function mismatchingPixels(): int
+    public function matchedPixels(): int
+    {
+        return $this->getResult()->matchedPixels();
+    }
+
+    public function mismatchedPixels(): int
     {
         return $this->getResult()->mismatchedPixels();
     }
