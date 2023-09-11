@@ -4,6 +4,7 @@ use Spatie\Pixelmatch\Exceptions\CouldNotCompare;
 use Spatie\Pixelmatch\Exceptions\InvalidImage;
 use Spatie\Pixelmatch\Exceptions\InvalidThreshold;
 use Spatie\Pixelmatch\Pixelmatch;
+use Spatie\Pixelmatch\PixelmatchResult;
 
 it('can get the matching percentage between images', function (string $image1, string $image2, int $result) {
     $pixelmatch = Pixelmatch::new($image1, $image2);
@@ -13,6 +14,12 @@ it('can get the matching percentage between images', function (string $image1, s
     'similar images' => [testImage('mapB.png'), testImage('mapB.png'), 100],
     'different images' => [testImage('mapA.png'), testImage('mapB.png'), 96],
 ]);
+
+it('can get a direct result', function() {
+    $pixelmatch = Pixelmatch::new(testImage('mapB.png'), testImage('mapB.png'));
+
+    expect($pixelmatch->getResult())->toBeInstanceOf(PixelmatchResult::class);
+});
 
 it('can get the mismatching pixels between images', function (string $image1, string $image2, int $result) {
     $pixelmatch = Pixelmatch::new($image1, $image2);
@@ -91,3 +98,5 @@ it('cannot compare two images with different dimensions', function() {
 
    $pixelMatch->getResult();
 })->throws(CouldNotCompare::class);
+
+
