@@ -9,8 +9,8 @@ it('can get the matching percentage between images', function (string $image1, s
 
     expect((int)$pixelmatch->matchingPercentage())->toBe($result);
 })->with([
-    'similar images' => [testImage('4b.png'), testImage('4b.png'), 100],
-    'different images' => [testImage('4a.png'), testImage('4b.png'), 96],
+    'similar images' => [testImage('mapB.png'), testImage('mapB.png'), 100],
+    'different images' => [testImage('mapA.png'), testImage('mapB.png'), 96],
 ]);
 
 it('can get the mismatching pixels between images', function (string $image1, string $image2, int $result) {
@@ -27,8 +27,8 @@ it('can get the mismatching percentage between images', function (string $image1
 
     expect((int)$pixelmatch->mismatchingPercentage())->toBe($result);
 })->with([
-    'similar images' => [testImage('4b.png'), testImage('4b.png'), 0],
-    'different images' => [testImage('4a.png'), testImage('4b.png'), 3],
+    'similar images' => [testImage('mapB.png'), testImage('mapB.png'), 0],
+    'different images' => [testImage('mapA.png'), testImage('mapB.png'), 3],
 ]);
 
 // Options tests
@@ -54,7 +54,7 @@ it('throws an exception when the image path is not a .png file', function (strin
 ]);
 
 it('can set include aa as option', function () {
-    $pixelmatch = Pixelmatch::new(testImage('4b.png'), testImage('4b.png'));
+    $pixelmatch = Pixelmatch::new(testImage('mapB.png'), testImage('mapB.png'));
 
     $pixelmatch->includeAa();
     expect($pixelmatch->options()['includeAA'])->toBeTrue();
@@ -64,7 +64,7 @@ it('can set include aa as option', function () {
 });
 
 it('can set the threshold', function () {
-    $pixelmatch = Pixelmatch::new(testImage('4b.png'), testImage('4b.png'));
+    $pixelmatch = Pixelmatch::new(testImage('mapB.png'), testImage('mapB.png'));
 
     $pixelmatch->threshold(0.1);
     expect($pixelmatch->options()['threshold'])->toBe(0.1);
@@ -77,7 +77,7 @@ it('can set the threshold', function () {
 });
 
 it('cannot set an invalid threshold', function (float $value) {
-    $pixelmatch = Pixelmatch::new(testImage('4b.png'), testImage('4b.png'));
+    $pixelmatch = Pixelmatch::new(testImage('mapB.png'), testImage('mapB.png'));
 
     $pixelmatch->threshold($value);
 })->with([
