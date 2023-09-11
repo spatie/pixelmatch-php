@@ -1,5 +1,6 @@
 <?php
 
+use Spatie\Pixelmatch\Exceptions\CouldNotCompare;
 use Spatie\Pixelmatch\Exceptions\InvalidImage;
 use Spatie\Pixelmatch\Exceptions\InvalidThreshold;
 use Spatie\Pixelmatch\Pixelmatch;
@@ -84,3 +85,9 @@ it('cannot set an invalid threshold', function (float $value) {
     -0.1,
     1.1,
 ])->throws(InvalidThreshold::class);
+
+it('cannot compare two images with different dimensions', function() {
+   $pixelMatch = Pixelmatch::new(testImage('mapA.png'), testImage('textB.png'));
+
+   $pixelMatch->getResult();
+})->throws(CouldNotCompare::class);

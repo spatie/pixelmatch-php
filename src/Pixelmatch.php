@@ -2,6 +2,7 @@
 
 namespace Spatie\Pixelmatch;
 
+use Spatie\Pixelmatch\Exceptions\CouldNotCompare;
 use Spatie\Pixelmatch\Exceptions\InvalidImage;
 use Spatie\Pixelmatch\Exceptions\InvalidThreshold;
 use Symfony\Component\Process\Exception\ProcessFailedException;
@@ -125,6 +126,13 @@ class Pixelmatch
         $process->run();
 
         if (! $process->isSuccessful()) {
+            if (str_contains($process->getErrorOutput(), 'Image sizes do not match')) {
+                throw CouldNotCompare::imageDimensionsDiffer(
+                    $this->pathToImage1,
+                    $this->pathToImage2
+                );
+            }
+
             throw new ProcessFailedException($process);
         }
 
