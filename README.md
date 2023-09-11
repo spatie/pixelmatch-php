@@ -71,15 +71,17 @@ $pixelmatch->matchedPixels(); // returns an int
 $pixelmatch->mismatchedPixels(); // returns an int
 ```
 
-## Setting a threshold
+### Setting a threshold
 
 To set the threshold for the amount of mismatching pixels, you can use the `threshold` method. Higher values will make the comparison more sensitive. The threshold should be between 0 and 1. 
+
+If you don't set a threshold, we'll use the default value of `0.1`.
 
 ```php
 $pixelmatch->threshold(0.05);
 ```
 
-## Ignoring anti-aliasing
+### Ignoring anti-aliasing
 
 To ignore anti-aliased pixels, you can use the `includeAa` method.
 
