@@ -50,8 +50,12 @@ class Arguments
         foreach ($paths as $filePath) {
             $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
+            if (! file_exists($filePath)) {
+                throw InvalidImage::doesNotExist($filePath);
+            }
+
             if (strtolower($extension) !== 'png') {
-                throw new InvalidArgumentException("File `{$filePath}` is not a .png file");
+                throw InvalidImage::invalidFormat($filePath);
             }
         }
     }

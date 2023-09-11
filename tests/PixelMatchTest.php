@@ -1,5 +1,6 @@
 <?php
 
+use Spatie\Pixelmatch\InvalidImage;
 use Spatie\Pixelmatch\InvalidThreshold;
 use Spatie\Pixelmatch\Pixelmatch;
 
@@ -46,7 +47,7 @@ it('throws an exception when the image path is not a .png file', function (strin
     $pixelmatch = Pixelmatch::new($image1, $image2);
 
     $pixelmatch->matchingPercentage();
-})->throws(InvalidArgumentException::class)->with([
+})->throws(InvalidImage::class)->with([
     'First is .jpg' => [testImage('1b.jpg'), testImage('1a.png')],
     'Second is .jpg' => [testImage('1a.png'), testImage('1b.jpg')],
     'Both are .docx' => [testImage('1b.docx'), testImage('1a.docx')],
