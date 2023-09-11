@@ -18,8 +18,8 @@ it('can get the mismatching pixels between images', function (string $image1, st
 
     expect($pixelmatch->mismatchingPixels())->toBe($result);
 })->with([
-    'similar images' => [testImage('1a.png'), testImage('1a.png'), 0],
-    'different images' => [testImage('1a.png'), testImage('1b.png'), 106],
+    'similar images' => [testImage('textA.png'), testImage('textA.png'), 0],
+    'different images' => [testImage('textA.png'), testImage('textB.png'), 106],
 ]);
 
 it('can get the mismatching percentage between images', function (string $image1, string $image2, int $result) {
@@ -33,7 +33,7 @@ it('can get the mismatching percentage between images', function (string $image1
 
 // Options tests
 it('can set the threshold higher', function (float $threshold, int $result) {
-    $pixelmatch = Pixelmatch::new(testImage('1a.png'), testImage('1b.png'));
+    $pixelmatch = Pixelmatch::new(testImage('textA.png'), testImage('textB.png'));
 
     $pixelmatch->threshold($threshold);
 
@@ -48,9 +48,9 @@ it('throws an exception when the image path is not a .png file', function (strin
 
     $pixelmatch->matchingPercentage();
 })->throws(InvalidImage::class)->with([
-    'First is .jpg' => [testImage('1b.jpg'), testImage('1a.png')],
-    'Second is .jpg' => [testImage('1a.png'), testImage('1b.jpg')],
-    'Both are .docx' => [testImage('1b.docx'), testImage('1a.docx')],
+    'First is .jpg' => [testImage('textB.jpg'), testImage('textA.png')],
+    'Second is .jpg' => [testImage('textA.png'), testImage('textB.jpg')],
+    'Both are .docx' => [testImage('textB.docx'), testImage('textA.docx')],
 ]);
 
 it('can set include aa as option', function () {
