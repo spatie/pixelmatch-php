@@ -2,8 +2,6 @@
 
 use Spatie\PixelMatch\PixelMatch;
 
-// Useful start: https://github.com/mapbox/pixelmatch/blob/main/test/test.js
-
 it('can get the matching percentage between images', function (string $image1, string $image2, int $result) {
     $pixelMatch = PixelMatch::new($image1, $image2);
 
