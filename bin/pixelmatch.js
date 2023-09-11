@@ -13,7 +13,14 @@ function getMatchingPercentage(requestedOutput, imagePath1, imagePath2, options 
     const { width, height } = img1;
     const diff = new PNG({ width, height });
 
-    const mismatchedPixels = Pixelmatch(img1.data, img2.data, diff.data, width, height, options);
+    const mismatchedPixels = Pixelmatch(
+        img1.data,
+        img2.data,
+        diff.data,
+        width,
+        height,
+        options
+    );
 
     if (requestedOutput === 'pixels') {
         process.stdout.write(JSON.stringify(mismatchedPixels));
