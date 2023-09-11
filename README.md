@@ -4,8 +4,18 @@
 [![Tests](https://img.shields.io/github/actions/workflow/status/spatie/pixelmatch-php/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/spatie/pixelmatch-php/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/pixelmatch-php.svg?style=flat-square)](https://packagist.org/packages/spatie/pixelmatch-php)
 
-Pixelmatch is a small and fast Javascript library for pixel-level image comparison.
-This package can execute the same pixel-level image comparison in PHP.
+This package can compare two images and return the percentage of matching pixels. It's a PHP wrapper around the [Pixelmatch](https://github.com/mapbox/pixelmatch) JavaScript library.
+
+Here's a quick example on how to use the package.
+
+```php
+use Spatie\Pixelmatch\Pixelmatch;
+
+$pixelmatch = Pixelmatch::new("path/to/file1.png", "path/to/file2.png");
+
+$pixelmatch->matchedPixelPercentage(); // returns a float, for example 97.5
+$pixelmatch->mismatchedPixelPercentage(); // returns a float, for example 2.5
+```
 
 ## Support us
 
@@ -26,46 +36,50 @@ composer require spatie/pixelmatch-php
 In your project, or on your server, you must have the JavaScript package [`Pixelmatch`](https://github.com/mapbox/Pixelmatch) installed.
 
 ```bash
-npm install Pixelmatch
+npm install pixelmatch
 ```
 
 ... or Yarn.
 
 ```bash
-yarn add Pixelmatch
+yarn add pixelmatch
 ```
 
 Make sure you have installed Node 16 or higher.
 
 ## Usage
 
-To quickly see the percentage of pixels that are different between two images, you can use the `mismatchedPixelPercentage` method.
-
-### Mismatching results in percentage or amount of pixels
+Here's how you can get the percentage of matching pixels between two images.
 
 ```php
 use Spatie\Pixelmatch\Pixelmatch;
 
 $pixelmatch = Pixelmatch::new("path/to/file1.png", "path/to/file2.png");
 
-$pixelmatch->mismatchedPixelPercentage(); // returns 3
-$pixelmatch->matchedPixelPercentage(); // returns 97
+$pixelmatch->matchedPixelPercentage(); // returns a float, for example 97.5
+$pixelmatch->mismatchedPixelPercentage(); // returns a float, for example 2.5
 ```
 
-To get the amount of mismatched pixels, you can use the `mismatchedPixels` method.
+To get the amount of matched and mismatched pixels, you can use these methods.
 
 ```php
 use Spatie\Pixelmatch\Pixelmatch;
 
-
 $pixelmatch = Pixelmatch::new("path/to/file1.png", "path/to/file2.png");
 
+$pixelmatch->matchedPixels(); // returns an int
 $pixelmatch->mismatchedPixels(); // returns an int
 ```
 
-### Options
+## Setting a threshold
 
-#### Ignoring anti-aliasing
+To set the threshold for the amount of mismatching pixels, you can use the `threshold` method. Higher values will make the comparison more sensitive. The threshold should be between 0 and 1. 
+
+```php
+$pixelmatch->threshold(0.05);
+```
+
+## Ignoring anti-aliasing
 
 To ignore anti-aliased pixels, you can use the `includeAa` method.
 
@@ -73,14 +87,11 @@ To ignore anti-aliased pixels, you can use the `includeAa` method.
 $pixelmatch->includeAa();
 ```
 
-#### Setting a threshold
+## Limitations
 
-To set the threshold for the amount of mismatching pixels, you can use the `threshold` method.
-The threshold should be between 0 and 1.
+The package can only compare png images.
 
-```php
-$pixelmatch->threshold(0.05);
-```
+Images with different dimensions cannot be compared. If you try to do this, a `Spatie\Pixelmatch\Exceptions\CouldNotCompare` exception will be thrown.
 
 ## Testing
 
