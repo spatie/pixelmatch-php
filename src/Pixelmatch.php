@@ -114,7 +114,7 @@ class Pixelmatch
             'options' => [
                 'includeAA' => $this->includeAa,
                 'threshold' => $this->threshold,
-            ]
+            ],
         ];
 
         $process = new Process(
