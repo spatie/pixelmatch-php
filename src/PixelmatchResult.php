@@ -16,12 +16,21 @@ class PixelmatchResult
     {
         $properties = json_decode($jsonString, true);
 
-
         return new self(
             $properties['mismatchedPixels'],
             $properties['width'],
             $properties['height'],
         );
+    }
+
+    public function width(): int
+    {
+        return $this->width;
+    }
+
+    public function height(): int
+    {
+        return $this->height;
     }
 
     public function totalPixels(): int
