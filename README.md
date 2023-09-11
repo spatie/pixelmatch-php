@@ -71,6 +71,15 @@ $pixelmatch->matchedPixels(); // returns an int
 $pixelmatch->mismatchedPixels(); // returns an int
 ```
 
+You can use the `matches function` to check if the images match.
+
+```php
+use Spatie\Pixelmatch\Pixelmatch;
+
+$pixelmatch = Pixelmatch::new("path/to/file1.png", "path/to/file2.png");
+$pixelmatch->matches(); // returns a boolean
+```
+
 ### Setting a threshold
 
 To set the threshold for the amount of mismatching pixels, you can use the `threshold` method. Higher values will make the comparison more sensitive. The threshold should be between 0 and 1. 
