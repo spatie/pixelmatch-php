@@ -1,10 +1,11 @@
 {
     "name": "spatie/pixelmatch-php",
-    "description": "A pixel-level image comparison package for PHP",
+    "description": "Compare images using PHP",
     "keywords": [
         "spatie",
         "pixelmatch-php",
-        "Pixelmatch"
+        "pixelmatch",
+        "images"
     ],
     "homepage": "https://github.com/spatie/pixelmatch-php",
     "license": "MIT",
