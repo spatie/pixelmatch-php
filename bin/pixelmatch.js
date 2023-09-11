@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const PNG = require('pngjs').PNG;
-const Pixelmatch = require('Pixelmatch');
+const pixelmatch = require('pixelmatch');
 
 try {
     const args = JSON.parse(process.argv.slice(2));
@@ -22,7 +22,7 @@ function getMatchingPercentage(imagePath1, imagePath2, options = {})
     const { width, height } = img1;
     const diff = new PNG({ width, height });
 
-    const mismatchedPixels = Pixelmatch(
+    const mismatchedPixels = pixelmatch(
         img1.data,
         img2.data,
         diff.data,
