@@ -114,7 +114,12 @@ class Pixelmatch
 
     public function matches(): bool
     {
-        return $this->getResult()->mismatchedPixels() === 0;
+        return $this->getResult()->matches();
+    }
+
+    public function doesNotMatch(): bool
+    {
+        return $this->getResult()->doesNotMatch();
     }
 
     public function getResult(): PixelmatchResult

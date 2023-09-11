@@ -40,6 +40,8 @@ it('can get a direct result', function () {
     expect($pixelmatch->getResult()->totalPixels())->toBe(180456);
     expect($pixelmatch->getResult()->width())->toBe(438);
     expect($pixelmatch->getResult()->height())->toBe(412);
+    expect($pixelmatch->getResult()->matches())->toBeFalse();
+    expect($pixelmatch->getResult()->doesNotMatch())->toBeTrue();
 });
 
 it('can get the mismatching pixels between images', function (string $image1, string $image2, int $result) {

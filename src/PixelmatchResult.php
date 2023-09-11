@@ -56,4 +56,14 @@ class PixelmatchResult
     {
         return 100 - $this->matchedPixelPercentage();
     }
+
+    public function matches(): bool
+    {
+        return $this->mismatchedPixels() === 0;
+    }
+
+    public function doesNotMatch(): bool
+    {
+        return ! $this->matches();
+    }
 }

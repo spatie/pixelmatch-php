@@ -78,6 +78,7 @@ use Spatie\Pixelmatch\Pixelmatch;
 
 $pixelmatch = Pixelmatch::new("path/to/file1.png", "path/to/file2.png");
 $pixelmatch->matches(); // returns a boolean
+$pixelmatch->doesNotMatch(); // returns a boolean
 ```
 
 ### Setting a threshold
