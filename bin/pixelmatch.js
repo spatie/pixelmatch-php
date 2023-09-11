@@ -4,6 +4,15 @@ const fs = require('fs');
 const PNG = require('pngjs').PNG;
 const Pixelmatch = require('Pixelmatch');
 
+try {
+    const args = JSON.parse(process.argv.slice(2));
+
+    getMatchingPercentage(args[0], args[1], args[2], args[3]);
+} catch (error) {
+    console.error(error);
+    process.exit(1);
+}
+
 function getMatchingPercentage(requestedOutput, imagePath1, imagePath2, options = {})
 {
     const img1 = PNG.sync.read(fs.readFileSync(imagePath1));
@@ -33,13 +42,4 @@ function getMatchingPercentage(requestedOutput, imagePath1, imagePath2, options 
 
         process.stdout.write(JSON.stringify(percentage));
     }
-}
-
-try {
-    const args = JSON.parse(process.argv.slice(2));
-
-    getMatchingPercentage(args[0], args[1], args[2], args[3]);
-} catch (error) {
-    console.error(error);
-    process.exit(1);
 }
