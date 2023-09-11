@@ -7,7 +7,7 @@ use Spatie\Pixelmatch\Pixelmatch;
 it('can get the matching percentage between images', function (string $image1, string $image2, int $result) {
     $pixelmatch = Pixelmatch::new($image1, $image2);
 
-    expect((int)$pixelmatch->matchingPercentage())->toBe($result);
+    expect((int) $pixelmatch->matchingPercentage())->toBe($result);
 })->with([
     'similar images' => [testImage('4b.png'), testImage('4b.png'), 100],
     'different images' => [testImage('4a.png'), testImage('4b.png'), 96],
@@ -25,7 +25,7 @@ it('can get the mismatching pixels between images', function (string $image1, st
 it('can get the mismatching percentage between images', function (string $image1, string $image2, int $result) {
     $pixelmatch = Pixelmatch::new($image1, $image2);
 
-    expect((int)$pixelmatch->mismatchingPercentage())->toBe($result);
+    expect((int) $pixelmatch->mismatchingPercentage())->toBe($result);
 })->with([
     'similar images' => [testImage('4b.png'), testImage('4b.png'), 0],
     'different images' => [testImage('4a.png'), testImage('4b.png'), 3],
