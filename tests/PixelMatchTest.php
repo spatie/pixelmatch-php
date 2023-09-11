@@ -41,7 +41,6 @@ it('can set the threshold higher', function (float $threshold, int $result) {
     'highest threshold' => [1, 0],
 ]);
 
-// Exceptions
 it('throws an exception when the image path is not a .png file', function (string $image1, string $image2) {
     $pixelmatch = Pixelmatch::new($image1, $image2);
 
