@@ -28,7 +28,7 @@ it('can get the mismatching percentage between images', function (string $image1
     expect($pixelmatch->mismatchingPercentage())->toBe($result);
 })->with([
     'similar images' => [testImage('4b.png'), testImage('4b.png'), 0],
-    'different images' => [testImage('4a.png'), testImage('4b.png'), 4],
+    'different images' => [testImage('4a.png'), testImage('4b.png'), 3],
 ]);
 
 // Options tests

@@ -2,7 +2,6 @@
 
 namespace Spatie\Pixelmatch;
 
-use Spatie\Pixelmatch\Enums\Output;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\ExecutableFinder;
 use Symfony\Component\Process\Process;
@@ -73,22 +72,22 @@ class Pixelmatch
 
     public function matchingPercentage(): int
     {
-        return $this->run(Output::Percentage);
+        return $this->getResult()->matchedPixelPercentage();
     }
 
     public function mismatchingPercentage(): int
     {
-        return 100 - $this->run(Output::Percentage);
+        return $this->getResult()->mismatchedPixelPercentage();
     }
 
     public function mismatchingPixels(): int
     {
-        return $this->run(Output::Pixels);
+        return $this->getResult()->mismatchedPixels();
     }
 
-    protected function run(Output $output): int
+    protected function getResult(): PixelmatchResult
     {
-        $arguments = Arguments::new($output, $this);
+        $arguments = Arguments::new($this);
 
         $process = new Process(
             command: $this->getCommand($arguments),
@@ -103,7 +102,7 @@ class Pixelmatch
 
         $result = $process->getOutput();
 
-        return (int) json_decode($result, true);
+        return PixelmatchResult::fromString($result);
     }
 
     /**

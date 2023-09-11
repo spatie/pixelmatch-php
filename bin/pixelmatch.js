@@ -13,7 +13,7 @@ try {
     process.exit(1);
 }
 
-function getMatchingPercentage(requestedOutput, imagePath1, imagePath2, options = {})
+function getMatchingPercentage(imagePath1, imagePath2, options = {})
 {
     const img1 = PNG.sync.read(fs.readFileSync(imagePath1));
     const img2 = PNG.sync.read(fs.readFileSync(imagePath2));
@@ -31,15 +31,9 @@ function getMatchingPercentage(requestedOutput, imagePath1, imagePath2, options 
         options
     );
 
-    if (requestedOutput === 'pixels') {
-        process.stdout.write(JSON.stringify(mismatchedPixels));
-        return;
-    }
-
-    if (requestedOutput === 'percentage') {
-        const totalPixels = width * height;
-        const percentage = ((totalPixels - mismatchedPixels) / totalPixels) * 100;
-
-        process.stdout.write(JSON.stringify(percentage));
-    }
+    process.stdout.write(JSON.stringify({
+        mismatchedPixels,
+        width,
+        height,
+    }))
 }

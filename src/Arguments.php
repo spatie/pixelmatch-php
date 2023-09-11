@@ -11,18 +11,16 @@ class Arguments
         public string $imagePath1,
         public string $imagePath2,
         public array $options,
-        public Output $output,
     ) {
         $this->validate();
     }
 
-    public static function new(Output $output, Pixelmatch $pixelmatch): self
+    public static function new(Pixelmatch $pixelmatch): self
     {
         return new self(
             imagePath1: $pixelmatch->pathToImage1,
             imagePath2: $pixelmatch->pathToImage2,
             options: $pixelmatch->options(),
-            output: $output,
         );
     }
 
@@ -30,7 +28,6 @@ class Arguments
     public function toArray(): array
     {
         return [
-            $this->output,
             $this->imagePath1,
             $this->imagePath2,
             $this->options,
