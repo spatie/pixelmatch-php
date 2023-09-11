@@ -1,4 +1,4 @@
 # Changelog
 
-All notable changes to `Pixelmatch-php` will be documented in this file.
+All notable changes to `pixelmatch-php` will be documented in this file.
 

@@ -1,15 +1,15 @@
 # A pixel-level image comparison package for PHP
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/Pixelmatch-php.svg?style=flat-square)](https://packagist.org/packages/spatie/Pixelmatch-php)
-[![Tests](https://img.shields.io/github/actions/workflow/status/spatie/Pixelmatch-php/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/spatie/Pixelmatch-php/actions/workflows/run-tests.yml)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/Pixelmatch-php.svg?style=flat-square)](https://packagist.org/packages/spatie/Pixelmatch-php)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/pixelmatch-php.svg?style=flat-square)](https://packagist.org/packages/spatie/pixelmatch-php)
+[![Tests](https://img.shields.io/github/actions/workflow/status/spatie/pixelmatch-php/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/spatie/pixelmatch-php/actions/workflows/run-tests.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/spatie/pixelmatch-php.svg?style=flat-square)](https://packagist.org/packages/spatie/pixelmatch-php)
 
 Pixelmatch is a small and fast Javascript library for pixel-level image comparison.
 This package can execute the same pixel-level image comparison in PHP.
 
 ## Support us
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/Pixelmatch-php.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/Pixelmatch-php)
+[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/pixelmatch-php.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/pixelmatch-php)
 
 We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
 
@@ -20,7 +20,7 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 You can install the package via composer:
 
 ```bash
-composer require spatie/Pixelmatch-php
+composer require spatie/pixelmatch-php
 ```
 
 In your project, or on your server, you must have the JavaScript package [`Pixelmatch`](https://github.com/mapbox/Pixelmatch) installed.
@@ -103,6 +103,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## Credits
 
 - [Niels Vanpachtenbeke](https://github.com/nielsvanpach)
+- [Freek Van der Herten](https://github.com/freekmurze)
 - [All Contributors](../../contributors)
 
 ## License

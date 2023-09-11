@@ -3,14 +3,19 @@
     "description": "A pixel-level image comparison package for PHP",
     "keywords": [
         "spatie",
-        "Pixelmatch-php",
+        "pixelmatch-php",
         "Pixelmatch"
     ],
-    "homepage": "https://github.com/spatie/Pixelmatch-php",
+    "homepage": "https://github.com/spatie/pixelmatch-php",
     "license": "MIT",
     "authors": [
         {
             "name": "Niels Vanpachtenbeke",
+            "email": "freek@spatie.be",
+            "role": "Developer"
+        },
+        {
+            "name": "Freek Van der Herten",
             "email": "freek@spatie.be",
             "role": "Developer"
         }
