@@ -15,12 +15,12 @@ it('can get the matching percentage between images', function (string $image1, s
     'different images' => [testImage('mapA.png'), testImage('mapB.png'), 96],
 ]);
 
-it('can get a direct result', function() {
+it('can get a direct result', function () {
     $pixelmatch = Pixelmatch::new(testImage('mapA.png'), testImage('mapB.png'));
 
     expect($pixelmatch->getResult())->toBeInstanceOf(PixelmatchResult::class);
-    expect((int)$pixelmatch->getResult()->matchedPixelPercentage())->toBe(96);
-    expect((int)$pixelmatch->getResult()->mismatchedPixelPercentage())->toBe(3);
+    expect((int) $pixelmatch->getResult()->matchedPixelPercentage())->toBe(96);
+    expect((int) $pixelmatch->getResult()->mismatchedPixelPercentage())->toBe(3);
     expect($pixelmatch->getResult()->matchedPixels())->toBe(173567);
     expect($pixelmatch->getResult()->mismatchedPixels())->toBe(6889);
     expect($pixelmatch->getResult()->totalPixels())->toBe(180456);
@@ -105,5 +105,3 @@ it('cannot compare two images with different dimensions', function () {
 
     $pixelMatch->getResult();
 })->throws(CouldNotCompare::class);
-
-
