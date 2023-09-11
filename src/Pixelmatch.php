@@ -6,6 +6,9 @@ use InvalidArgumentException;
 use Spatie\Pixelmatch\Actions\ExecuteNodeAction;
 use Spatie\Pixelmatch\Concerns\HasOptions;
 use Spatie\Pixelmatch\Enums\Output;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\ExecutableFinder;
+use Symfony\Component\Process\Process;
 
 class Pixelmatch
 {
@@ -21,10 +24,13 @@ class Pixelmatch
      */
     protected float $threshold;
 
+    protected string $fileDir = 'bin/';
+
+    protected string $filename = 'Pixelmatch.js';
+
     protected function __construct(
         public string $pathToImage1,
         public string $pathToImage2,
-        public $executeNodeAction = new ExecuteNodeAction(),
     ) {
         $this->workingDirectory = (string) realpath(dirname(__DIR__));
     }
@@ -87,11 +93,34 @@ class Pixelmatch
     {
         $arguments = Arguments::new($output, $this);
 
-        $result = $this->executeNodeAction->execute(
-            workingDir: $this->workingDirectory,
-            arguments: $arguments->toArray(),
+        $process = new Process(
+            command: $this->getCommand($arguments),
+            cwd: $this->workingDirectory,
         );
 
+        $process->run();
+
+        if (! $process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        $result =  $process->getOutput();
+
         return (int) json_decode($result, true);
+    }
+
+    /**
+     * @return array<int, ?string>
+     */
+    protected function getCommand(Arguments $arguments): array
+    {
+        return [
+            (new ExecutableFinder())->find('node', 'node', [
+                '/usr/local/bin',
+                '/opt/homebrew/bin',
+            ]),
+            $this->fileDir.$this->filename,
+            json_encode(array_values($arguments->toArray()), JSON_THROW_ON_ERROR),
+        ];
     }
 }
