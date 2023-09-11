@@ -86,8 +86,8 @@ it('cannot set an invalid threshold', function (float $value) {
     1.1,
 ])->throws(InvalidThreshold::class);
 
-it('cannot compare two images with different dimensions', function() {
-   $pixelMatch = Pixelmatch::new(testImage('mapA.png'), testImage('textB.png'));
+it('cannot compare two images with different dimensions', function () {
+    $pixelMatch = Pixelmatch::new(testImage('mapA.png'), testImage('textB.png'));
 
-   $pixelMatch->getResult();
+    $pixelMatch->getResult();
 })->throws(CouldNotCompare::class);
