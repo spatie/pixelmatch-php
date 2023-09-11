@@ -102,7 +102,7 @@ class Pixelmatch
             throw new ProcessFailedException($process);
         }
 
-        $result =  $process->getOutput();
+        $result = $process->getOutput();
 
         return (int) json_decode($result, true);
     }
