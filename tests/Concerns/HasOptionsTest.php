@@ -3,6 +3,7 @@
 namespace Spatie\Pixelmatch\Tests\Concerns;
 
 use InvalidArgumentException;
+use Spatie\Pixelmatch\InvalidThreshold;
 use Spatie\Pixelmatch\Pixelmatch;
 
 beforeEach(function () {
@@ -33,7 +34,7 @@ it('cannot set an invalid threshold', function (float $value) {
 })->with([
     -0.1,
     1.1,
-])->throws(InvalidArgumentException::class);
+])->throws(InvalidThreshold::class);
 
 it('only returns the options which are explicitly set', function () {
     expect($this->Pixelmatch->options())->toBe([]);

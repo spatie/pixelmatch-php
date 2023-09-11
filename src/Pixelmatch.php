@@ -48,7 +48,7 @@ class Pixelmatch
     public function threshold(float $threshold): self
     {
         if ($threshold > 1 || $threshold < 0) {
-            throw new InvalidArgumentException('Threshold should be between 0 and 1');
+            throw InvalidThreshold::make($threshold);
         }
 
         $this->threshold = $threshold;
