@@ -14,8 +14,8 @@ it('can can execute node', function () {
         workingDir: realpath(dirname(__DIR__, 2)),
         arguments: [
             Output::Pixels,
-            'tests/fixtures/4b.png',
-            'tests/fixtures/4b.png',
+            testImage('4b.png'),
+            testImage('4b.png'),
         ]
     );
 })->expectNotToPerformAssertions();
