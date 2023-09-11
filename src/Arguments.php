@@ -7,7 +7,6 @@ use Spatie\Pixelmatch\Enums\Output;
 
 class Arguments
 {
-    // @todo extend with output, width & height, if needed
     /** @param  array<string, mixed>  $options */
     protected function __construct(
         public string $imagePath1,
