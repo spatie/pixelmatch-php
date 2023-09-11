@@ -15,7 +15,7 @@ it('can get the matching percentage between images', function (string $image1, s
     'different images' => [testImage('mapA.png'), testImage('mapB.png'), 96],
 ]);
 
-it('can determine if a images matches', function(
+it('can determine if a images matches', function (
     string $image1,
     string $image2,
     bool $expected
@@ -25,7 +25,7 @@ it('can determine if a images matches', function(
     expect($pixelmatch->matches())->toBe($expected);
 })->with([
     [testImage('mapA.png'), testImage('mapB.png'), false],
-    [testImage('mapA.png'), testImage('mapA.png'), true]
+    [testImage('mapA.png'), testImage('mapA.png'), true],
 
 ]);
 
