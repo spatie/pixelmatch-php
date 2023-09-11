@@ -1,7 +1,7 @@
 <?php
 
-use Spatie\Pixelmatch\InvalidImage;
-use Spatie\Pixelmatch\InvalidThreshold;
+use Spatie\Pixelmatch\Exceptions\InvalidImage;
+use Spatie\Pixelmatch\Exceptions\InvalidThreshold;
 use Spatie\Pixelmatch\Pixelmatch;
 
 it('can get the matching percentage between images', function (string $image1, string $image2, int $result) {
@@ -54,7 +54,7 @@ it('throws an exception when the image path is not a .png file', function (strin
 ]);
 
 it('can set include aa as option', function () {
-    $pixelmatch = Pixelmatch::new('dummy-path.png', 'dummy-path2.png');
+    $pixelmatch = Pixelmatch::new(testImage('4b.png'), testImage('4b.png'));
 
     $pixelmatch->includeAa();
     expect($pixelmatch->options()['includeAA'])->toBeTrue();
@@ -64,7 +64,7 @@ it('can set include aa as option', function () {
 });
 
 it('can set the threshold', function () {
-    $pixelmatch = Pixelmatch::new('dummy-path.png', 'dummy-path2.png');
+    $pixelmatch = Pixelmatch::new(testImage('4b.png'), testImage('4b.png'));
 
     $pixelmatch->threshold(0.1);
     expect($pixelmatch->options()['threshold'])->toBe(0.1);
@@ -77,7 +77,7 @@ it('can set the threshold', function () {
 });
 
 it('cannot set an invalid threshold', function (float $value) {
-    $pixelmatch = Pixelmatch::new('dummy-path.png', 'dummy-path2.png');
+    $pixelmatch = Pixelmatch::new(testImage('4b.png'), testImage('4b.png'));
 
     $pixelmatch->threshold($value);
 })->with([
@@ -85,14 +85,3 @@ it('cannot set an invalid threshold', function (float $value) {
     1.1,
 ])->throws(InvalidThreshold::class);
 
-it('only returns the options which are explicitly set', function () {
-    $pixelmatch = Pixelmatch::new('dummy-path.png', 'dummy-path2.png');
-
-    expect($pixelmatch->options())->toBe([]);
-
-    $pixelmatch->includeAA();
-    expect($pixelmatch->options())->toBe(['includeAA' => true]);
-
-    $pixelmatch->threshold(0.9);
-    expect($pixelmatch->options())->toBe(['includeAA' => true, 'threshold' => 0.9]);
-});

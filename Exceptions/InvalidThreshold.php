@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\Pixelmatch;
+namespace Spatie\Pixelmatch\Exceptions;
 
 use InvalidArgumentException;
 

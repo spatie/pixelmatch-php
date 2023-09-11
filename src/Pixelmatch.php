@@ -2,6 +2,8 @@
 
 namespace Spatie\Pixelmatch;
 
+use Spatie\Pixelmatch\Exceptions\InvalidImage;
+use Spatie\Pixelmatch\Exceptions\InvalidThreshold;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\ExecutableFinder;
 use Symfony\Component\Process\Process;
@@ -13,12 +15,12 @@ class Pixelmatch
     /*
      * If true, we'll ignore anti-aliased pixels
      */
-    protected bool $includeAa;
+    protected bool $includeAa = false;
 
     /*
      * Smaller values make the comparison more sensitive
      */
-    protected float $threshold;
+    protected float $threshold = 0.1;
 
     protected string $fileDir = 'bin/';
 
@@ -29,6 +31,25 @@ class Pixelmatch
         public string $pathToImage2,
     ) {
         $this->workingDirectory = (string) realpath(dirname(__DIR__));
+
+        $this->ensureValidImages();
+    }
+
+    protected function ensureValidImages(): void
+    {
+        $paths = [$this->pathToImage1, $this->pathToImage2];
+
+        foreach ($paths as $filePath) {
+            $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+
+            if (! file_exists($filePath)) {
+                throw InvalidImage::doesNotExist($filePath);
+            }
+
+            if (strtolower($extension) !== 'png') {
+                throw InvalidImage::invalidFormat($filePath);
+            }
+        }
     }
 
     public static function new(string $pathToImage1, string $pathToImage2): self
@@ -85,9 +106,16 @@ class Pixelmatch
         return $this->getResult()->mismatchedPixels();
     }
 
-    protected function getResult(): PixelmatchResult
+    public function getResult(): PixelmatchResult
     {
-        $arguments = Arguments::new($this);
+        $arguments = [
+            'imagePath1' => $this->pathToImage1,
+            'imagePath2' => $this->pathToImage2,
+            'options' => [
+                'includeAA' => $this->includeAa,
+                'threshold' => $this->threshold,
+            ]
+        ];
 
         $process = new Process(
             command: $this->getCommand($arguments),
@@ -108,7 +136,7 @@ class Pixelmatch
     /**
      * @return array<int, ?string>
      */
-    protected function getCommand(Arguments $arguments): array
+    protected function getCommand(array $arguments): array
     {
         return [
             (new ExecutableFinder())->find('node', 'node', [
@@ -116,7 +144,7 @@ class Pixelmatch
                 '/opt/homebrew/bin',
             ]),
             $this->fileDir.$this->filename,
-            $arguments->toJson(),
+            json_encode(array_values($arguments)),
         ];
     }
 }
