@@ -2,8 +2,6 @@
 
 namespace Spatie\Pixelmatch;
 
-use Spatie\Pixelmatch\Enums\Output;
-
 class Arguments
 {
     /** @param  array<string, mixed>  $options */
