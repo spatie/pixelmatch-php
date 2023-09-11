@@ -8,8 +8,7 @@ class PixelmatchResult
         protected int $mismatchedPixels,
         protected int $width,
         protected int $height,
-    )
-    {
+    ) {
     }
 
     public static function fromString(string $jsonString): self
@@ -50,11 +49,11 @@ class PixelmatchResult
 
     public function matchedPixelPercentage(): float
     {
-         return ($this->matchedPixels() / $this->totalPixels()) * 100;
+        return ($this->matchedPixels() / $this->totalPixels()) * 100;
     }
 
     public function mismatchedPixelPercentage(): float
     {
-         return 100 - $this->matchedPixelPercentage();
+        return 100 - $this->matchedPixelPercentage();
     }
 }
