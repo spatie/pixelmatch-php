@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\PixelMatch\Actions;
+namespace Spatie\Pixelmatch\Actions;
 
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\ExecutableFinder;
@@ -10,7 +10,7 @@ class ExecuteNodeAction
 {
     protected string $fileDir = 'bin/';
 
-    protected string $filename = 'pixelmatch.js';
+    protected string $filename = 'Pixelmatch.js';
 
     /** @param  array<int, mixed>  $arguments */
     public function execute(

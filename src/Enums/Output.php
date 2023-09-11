@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\PixelMatch\Enums;
+namespace Spatie\Pixelmatch\Enums;
 
 enum Output: string
 {

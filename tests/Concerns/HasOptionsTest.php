@@ -1,46 +1,46 @@
 <?php
 
-namespace Spatie\PixelMatch\Tests\Concerns;
+namespace Spatie\Pixelmatch\Tests\Concerns;
 
 use InvalidArgumentException;
-use Spatie\PixelMatch\PixelMatch;
+use Spatie\Pixelmatch\Pixelmatch;
 
 beforeEach(function () {
-    $this->pixelMatch = PixelMatch::new('path.png', 'path2.png');
+    $this->Pixelmatch = Pixelmatch::new('path.png', 'path2.png');
 });
 
 it('can set include aa as option', function () {
-    $this->pixelMatch->includeAa();
-    expect($this->pixelMatch->options()['includeAA'])->toBeTrue();
+    $this->Pixelmatch->includeAa();
+    expect($this->Pixelmatch->options()['includeAA'])->toBeTrue();
 
-    $this->pixelMatch->includeAa(false);
-    expect($this->pixelMatch->options()['includeAA'])->toBeFalse();
+    $this->Pixelmatch->includeAa(false);
+    expect($this->Pixelmatch->options()['includeAA'])->toBeFalse();
 });
 
 it('can set the threshold', function () {
-    $this->pixelMatch->threshold(0.1);
-    expect($this->pixelMatch->options()['threshold'])->toBe(0.1);
+    $this->Pixelmatch->threshold(0.1);
+    expect($this->Pixelmatch->options()['threshold'])->toBe(0.1);
 
-    $this->pixelMatch->threshold(1);
-    expect($this->pixelMatch->options()['threshold'])->toBe(1.0);
+    $this->Pixelmatch->threshold(1);
+    expect($this->Pixelmatch->options()['threshold'])->toBe(1.0);
 
-    $this->pixelMatch->threshold(0);
-    expect($this->pixelMatch->options()['threshold'])->toBe(0.0);
+    $this->Pixelmatch->threshold(0);
+    expect($this->Pixelmatch->options()['threshold'])->toBe(0.0);
 });
 
 it('cannot set an invalid threshold', function (float $value) {
-    $this->pixelMatch->threshold($value);
+    $this->Pixelmatch->threshold($value);
 })->with([
     -0.1,
     1.1,
 ])->throws(InvalidArgumentException::class);
 
 it('only returns the options which are explicitly set', function () {
-    expect($this->pixelMatch->options())->toBe([]);
+    expect($this->Pixelmatch->options())->toBe([]);
 
-    $this->pixelMatch->includeAA();
-    expect($this->pixelMatch->options())->toBe(['includeAA' => true]);
+    $this->Pixelmatch->includeAA();
+    expect($this->Pixelmatch->options())->toBe(['includeAA' => true]);
 
-    $this->pixelMatch->threshold(0.9);
-    expect($this->pixelMatch->options())->toBe(['includeAA' => true, 'threshold' => 0.9]);
+    $this->Pixelmatch->threshold(0.9);
+    expect($this->Pixelmatch->options())->toBe(['includeAA' => true, 'threshold' => 0.9]);
 });

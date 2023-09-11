@@ -1,15 +1,15 @@
 # A pixel-level image comparison package for PHP
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/pixelmatch-php.svg?style=flat-square)](https://packagist.org/packages/spatie/pixelmatch-php)
-[![Tests](https://img.shields.io/github/actions/workflow/status/spatie/pixelmatch-php/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/spatie/pixelmatch-php/actions/workflows/run-tests.yml)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/pixelmatch-php.svg?style=flat-square)](https://packagist.org/packages/spatie/pixelmatch-php)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/Pixelmatch-php.svg?style=flat-square)](https://packagist.org/packages/spatie/Pixelmatch-php)
+[![Tests](https://img.shields.io/github/actions/workflow/status/spatie/Pixelmatch-php/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/spatie/Pixelmatch-php/actions/workflows/run-tests.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/spatie/Pixelmatch-php.svg?style=flat-square)](https://packagist.org/packages/spatie/Pixelmatch-php)
 
 Pixelmatch is a small and fast Javascript library for pixel-level image comparison.
 This package can execute the same pixel-level image comparison in PHP.
 
 ## Support us
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/pixelmatch-php.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/pixelmatch-php)
+[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/Pixelmatch-php.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/Pixelmatch-php)
 
 We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
 
@@ -20,19 +20,19 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 You can install the package via composer:
 
 ```bash
-composer require spatie/pixelmatch-php
+composer require spatie/Pixelmatch-php
 ```
 
-In your project, or on your server, you must have the JavaScript package [`pixelmatch`](https://github.com/mapbox/pixelmatch) installed.
+In your project, or on your server, you must have the JavaScript package [`Pixelmatch`](https://github.com/mapbox/Pixelmatch) installed.
 
 ```bash
-npm install pixelmatch
+npm install Pixelmatch
 ```
 
 ... or Yarn.
 
 ```bash
-yarn add pixelmatch
+yarn add Pixelmatch
 ```
 
 Make sure you have installed Node 16 or higher.
@@ -44,23 +44,23 @@ To quickly see the percentage of pixels that are different between two images, y
 ### Mismatching results in percentage or amount of pixels
 
 ```php
-use Spatie\PixelMatch\PixelMatch;
+use Spatie\Pixelmatch\Pixelmatch;
 
-$pixelMatch = PixelMatch::new("path/to/file1.png", "path/to/file2.png");
+$pixelmatch = Pixelmatch::new("path/to/file1.png", "path/to/file2.png");
 
-$pixelMatch->mismatchingPercentage(); // returns 3
-$pixelMatch->matchingPercentage(); // returns 97
+$pixelmatch->mismatchingPercentage(); // returns 3
+$pixelmatch->matchingPercentage(); // returns 97
 ```
 
 To get the amount of mismatched pixels, you can use the `mismatchingPixels` method.
 
 ```php
-use Spatie\PixelMatch\PixelMatch;
+use Spatie\Pixelmatch\Pixelmatch;
 
 
-$pixelMatch = PixelMatch::new("path/to/file1.png", "path/to/file2.png");
+$pixelmatch = Pixelmatch::new("path/to/file1.png", "path/to/file2.png");
 
-$pixelMatch->mismatchingPixels(); // returns an int
+$pixelmatch->mismatchingPixels(); // returns an int
 ```
 
 ### Options
@@ -70,7 +70,7 @@ $pixelMatch->mismatchingPixels(); // returns an int
 To ignore anti-aliased pixels, you can use the `includeAa` method.
 
 ```php
-$pixelMatch->includeAa();
+$pixelmatch->includeAa();
 ```
 
 #### Setting a threshold
@@ -79,7 +79,7 @@ To set the threshold for the amount of mismatching pixels, you can use the `thre
 The threshold should be between 0 and 1.
 
 ```php
-$pixelMatch->threshold(0.05);
+$pixelmatch->threshold(0.05);
 ```
 
 ## Testing

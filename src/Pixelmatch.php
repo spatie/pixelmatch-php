@@ -1,12 +1,12 @@
 <?php
 
-namespace Spatie\PixelMatch;
+namespace Spatie\Pixelmatch;
 
-use Spatie\PixelMatch\Actions\ExecuteNodeAction;
-use Spatie\PixelMatch\Concerns\HasOptions;
-use Spatie\PixelMatch\Enums\Output;
+use Spatie\Pixelmatch\Actions\ExecuteNodeAction;
+use Spatie\Pixelmatch\Concerns\HasOptions;
+use Spatie\Pixelmatch\Enums\Output;
 
-class PixelMatch
+class Pixelmatch
 {
     use HasOptions;
 

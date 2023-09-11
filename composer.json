@@ -3,10 +3,10 @@
     "description": "A pixel-level image comparison package for PHP",
     "keywords": [
         "spatie",
-        "pixelmatch-php",
-        "pixelmatch"
+        "Pixelmatch-php",
+        "Pixelmatch"
     ],
-    "homepage": "https://github.com/spatie/pixelmatch-php",
+    "homepage": "https://github.com/spatie/Pixelmatch-php",
     "license": "MIT",
     "authors": [
         {
@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\PixelMatch\\": "src"
+            "Spatie\\Pixelmatch\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\PixelMatch\\Tests\\": "tests"
+            "Spatie\\Pixelmatch\\Tests\\": "tests"
         }
     },
     "scripts": {

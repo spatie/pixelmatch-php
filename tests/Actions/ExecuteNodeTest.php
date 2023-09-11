@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\PixelMatch\Tests\Actions;
+namespace Spatie\Pixelmatch\Tests\Actions;
 
-use Spatie\PixelMatch\Actions\ExecuteNodeAction;
-use Spatie\PixelMatch\Enums\Output;
+use Spatie\Pixelmatch\Actions\ExecuteNodeAction;
+use Spatie\Pixelmatch\Enums\Output;
 
 beforeEach(function () {
     $this->action = new ExecuteNodeAction();

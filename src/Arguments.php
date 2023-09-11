@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\PixelMatch;
+namespace Spatie\Pixelmatch;
 
 use InvalidArgumentException;
-use Spatie\PixelMatch\Enums\Output;
+use Spatie\Pixelmatch\Enums\Output;
 
 class Arguments
 {
@@ -18,12 +18,12 @@ class Arguments
         $this->validate();
     }
 
-    public static function new(Output $output, PixelMatch $pixelMatch): self
+    public static function new(Output $output, Pixelmatch $pixelmatch): self
     {
         return new self(
-            imagePath1: $pixelMatch->pathToImage1,
-            imagePath2: $pixelMatch->pathToImage2,
-            options: $pixelMatch->options(),
+            imagePath1: $pixelmatch->pathToImage1,
+            imagePath2: $pixelmatch->pathToImage2,
+            options: $pixelmatch->options(),
             output: $output,
         );
     }

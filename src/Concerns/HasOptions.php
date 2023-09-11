@@ -1,11 +1,11 @@
 <?php
 
-namespace Spatie\PixelMatch\Concerns;
+namespace Spatie\Pixelmatch\Concerns;
 
 use InvalidArgumentException;
-use Spatie\PixelMatch\PixelMatch;
+use Spatie\Pixelmatch\Pixelmatch;
 
-/** @mixin PixelMatch */
+/** @mixin Pixelmatch */
 trait HasOptions
 {
     /*
