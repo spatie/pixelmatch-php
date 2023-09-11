@@ -53,7 +53,7 @@ it('throws an exception when the image path is not a .png file', function (strin
 ]);
 
 it('can set include aa as option', function () {
-    $pixelmatch = Pixelmatch::new('path.png', 'path2.png');
+    $pixelmatch = Pixelmatch::new('dummy-path.png', 'dummy-path2.png');
 
     $pixelmatch->includeAa();
     expect($pixelmatch->options()['includeAA'])->toBeTrue();
@@ -63,7 +63,7 @@ it('can set include aa as option', function () {
 });
 
 it('can set the threshold', function () {
-    $pixelmatch = Pixelmatch::new('path.png', 'path2.png');
+    $pixelmatch = Pixelmatch::new('dummy-path.png', 'dummy-path2.png');
 
     $pixelmatch->threshold(0.1);
     expect($pixelmatch->options()['threshold'])->toBe(0.1);
@@ -76,7 +76,7 @@ it('can set the threshold', function () {
 });
 
 it('cannot set an invalid threshold', function (float $value) {
-    $pixelmatch = Pixelmatch::new('path.png', 'path2.png');
+    $pixelmatch = Pixelmatch::new('dummy-path.png', 'dummy-path2.png');
 
     $pixelmatch->threshold($value);
 })->with([
@@ -85,7 +85,7 @@ it('cannot set an invalid threshold', function (float $value) {
 ])->throws(InvalidThreshold::class);
 
 it('only returns the options which are explicitly set', function () {
-    $pixelmatch = Pixelmatch::new('path.png', 'path2.png');
+    $pixelmatch = Pixelmatch::new('dummy-path.png', 'dummy-path2.png');
 
     expect($pixelmatch->options())->toBe([]);
 
