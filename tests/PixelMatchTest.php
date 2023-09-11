@@ -16,9 +16,16 @@ it('can get the matching percentage between images', function (string $image1, s
 ]);
 
 it('can get a direct result', function() {
-    $pixelmatch = Pixelmatch::new(testImage('mapB.png'), testImage('mapB.png'));
+    $pixelmatch = Pixelmatch::new(testImage('mapA.png'), testImage('mapB.png'));
 
     expect($pixelmatch->getResult())->toBeInstanceOf(PixelmatchResult::class);
+    expect((int)$pixelmatch->getResult()->matchedPixelPercentage())->toBe(96);
+    expect((int)$pixelmatch->getResult()->mismatchedPixelPercentage())->toBe(3);
+    expect($pixelmatch->getResult()->matchedPixels())->toBe(173567);
+    expect($pixelmatch->getResult()->mismatchedPixels())->toBe(6889);
+    expect($pixelmatch->getResult()->totalPixels())->toBe(180456);
+    expect($pixelmatch->getResult()->width())->toBe(438);
+    expect($pixelmatch->getResult()->height())->toBe(412);
 });
 
 it('can get the mismatching pixels between images', function (string $image1, string $image2, int $result) {
