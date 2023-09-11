@@ -15,6 +15,20 @@ it('can get the matching percentage between images', function (string $image1, s
     'different images' => [testImage('mapA.png'), testImage('mapB.png'), 96],
 ]);
 
+it('can determine if a images matches', function(
+    string $image1,
+    string $image2,
+    bool $expected
+) {
+    $pixelmatch = Pixelmatch::new($image1, $image2);
+
+    expect($pixelmatch->matches())->toBe($expected);
+})->with([
+    [testImage('mapA.png'), testImage('mapB.png'), false],
+    [testImage('mapA.png'), testImage('mapA.png'), true]
+
+]);
+
 it('can get a direct result', function () {
     $pixelmatch = Pixelmatch::new(testImage('mapA.png'), testImage('mapB.png'));
 
