@@ -120,7 +120,7 @@ class Pixelmatch
                 '/opt/homebrew/bin',
             ]),
             $this->fileDir.$this->filename,
-            json_encode(array_values($arguments->toArray()), JSON_THROW_ON_ERROR),
+            $arguments->toJson(),
         ];
     }
 }

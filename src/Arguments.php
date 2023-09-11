@@ -38,6 +38,11 @@ class Arguments
         ];
     }
 
+    public function toJson(): string
+    {
+        return json_encode(array_values($this->toArray()), JSON_THROW_ON_ERROR);
+    }
+
     protected function validate(): void
     {
         $paths = [$this->imagePath1, $this->imagePath2];
