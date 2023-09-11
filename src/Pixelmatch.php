@@ -3,8 +3,6 @@
 namespace Spatie\Pixelmatch;
 
 use InvalidArgumentException;
-use Spatie\Pixelmatch\Actions\ExecuteNodeAction;
-use Spatie\Pixelmatch\Concerns\HasOptions;
 use Spatie\Pixelmatch\Enums\Output;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\ExecutableFinder;
