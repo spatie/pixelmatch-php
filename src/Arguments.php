@@ -2,7 +2,6 @@
 
 namespace Spatie\Pixelmatch;
 
-use InvalidArgumentException;
 use Spatie\Pixelmatch\Enums\Output;
 
 class Arguments
