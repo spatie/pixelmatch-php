@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const PNG = require('pngjs').PNG;
-const pixelmatch = require('pixelmatch');
+import fs from 'fs';
+import { PNG } from 'pngjs';
+import pixelmatch from 'pixelmatch';
 
 try {
     const args = JSON.parse(process.argv.slice(2));
