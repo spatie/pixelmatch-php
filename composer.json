@@ -27,7 +27,7 @@
     },
     "require-dev": {
         "laravel/pint": "^1.13",
-        "pestphp/pest": "^2.0",
+        "pestphp/pest": "^2.0|^3.0|^4.0",
         "phpstan/phpstan": "^1.10",
         "spatie/ray": "^1.28"
     },
